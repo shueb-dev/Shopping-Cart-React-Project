@@ -17,10 +17,9 @@ export const ProductList = () => {
         const { data } = await axios.get(
           "https://dummyjson.com/products?limit=100",
         );
-        setTimeout(() => {
-          setProducts(data.products);
-          SetLoading(false);
-        }, 1000);
+
+        setProducts(data.products);
+        SetLoading(false);
       } catch (e) {
         SetLoading(false);
         console.log(e);

@@ -1,13 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import ProductDetailsSkeleton from "./ProductDetailsSkeleton";
 
 function ProductDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   //   console.log(id);
 
   const [product, setProduct] = useState(null);
+  const [mainImage, setMainImage] = useState();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -15,7 +18,9 @@ function ProductDetails() {
         const { data } = await axios.get(
           `https://dummyjson.com/products/${id}`,
         );
+
         setProduct(data);
+        setMainImage(data.thumbnail);
       } catch (e) {
         console.log(e);
       }
@@ -23,10 +28,14 @@ function ProductDetails() {
     getProduct();
   }, [id]);
 
+  if (!product) return <ProductDetailsSkeleton />;
   return (
     product && (
       <div className="p-4 md:8">
-        <button className="bg-pink-600 text-white text-xl px-2 font-semibold py-2 mb-4 rounded-lg hover:bg-pink-800 transition-colors duration-200">
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-pink-600 text-white text-xl px-2 font-semibold py-2 mb-4 rounded-lg hover:bg-pink-800 transition-colors duration-200"
+        >
           ← Go Back
         </button>
 
@@ -35,7 +44,7 @@ function ProductDetails() {
           <div className="md:w-1/2 pr-4 mb-6 md:mb-0 ">
             <img
               className="w-full h-96 bg-white shadow-lg"
-              src={product.thumbnail}
+              src={mainImage}
               alt={product.title}
             />
 
@@ -43,6 +52,7 @@ function ProductDetails() {
             <div className="flex mt-4 space-x-4 overflow-auto">
               {product.images.map((Image, idx) => (
                 <img
+                  onClick={() => setMainImage(Image)}
                   className="w-24 h-24 bg-white shadow-md cursor-pointer"
                   key={idx}
                   src={Image}

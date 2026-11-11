@@ -27,7 +27,16 @@ function Header() {
           >
             About
           </Link>
-          <Link className="hover:text-blue-600 transition duration-200 ease-in-out">
+          <Link
+            to="/cart"
+            className="hover:text-blue-600 transition duration-200 ease-in-out"
+          >
+            Cart
+          </Link>
+          <Link
+            to="/contact"
+            className="hover:text-blue-600 transition duration-200 ease-in-out"
+          >
             Contact
           </Link>
           <div className="hover:text-blue-600 transition duration-200 ease-in-out relative">

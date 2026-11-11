@@ -3,10 +3,9 @@ import React from "react";
 function Contact() {
   return (
     <div>
-      <h2>this is contact</h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis,
-        magnam!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
+        distinctio iure asperiores, cum quisquam necessitatibus.
       </p>
     </div>
   );
