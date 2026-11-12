@@ -7,7 +7,7 @@ function Payment() {
         <h4>Choose payment method</h4>
         <div className="space-x-4">
           <label htmlFor="" className="flex items-center space-x-2">
-            <input type="radio" className="text-pink-600" />
+            <input name="payment" type="radio" className="text-pink-600" />
             <span className=" font-semibold">Card payment</span>
           </label>
           <label htmlFor="" className="flex items-center space-x-2">

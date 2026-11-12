@@ -28,18 +28,15 @@ function Header() {
             About
           </Link>
           <Link
-            to="/cart"
-            className="hover:text-blue-600 transition duration-200 ease-in-out"
-          >
-            Cart
-          </Link>
-          <Link
             to="/contact"
             className="hover:text-blue-600 transition duration-200 ease-in-out"
           >
             Contact
           </Link>
-          <div className="hover:text-blue-600 transition duration-200 ease-in-out relative">
+          <Link
+            to="/cart"
+            className="hover:text-blue-600 transition duration-200 ease-in-out relative"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -57,7 +54,7 @@ function Header() {
             <span className="absolute -top-1 -right-1 bg-blue-400 w-5 h-5 rounded-full flex justify-center items-center text-white text-sm">
               0
             </span>
-          </div>
+          </Link>
         </ul>
       </div>
     </div>
