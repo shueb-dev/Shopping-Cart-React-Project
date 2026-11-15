@@ -1,12 +1,10 @@
-import { IoReturnUpBack } from "react-icons/io5";
-
 export const initialState = {
   products: [],
-  Total,
+  Total: 0,
 };
 
 const ShopReducer = (state, action) => {
-  const { type, payload } = products;
+  const { type, payload } = action;
 
   switch (type) {
     case "ADD_TO_CART":

@@ -1,6 +1,9 @@
 import React from "react";
+import useShop from "../ShopContext";
 
 function Payment() {
+  const { Total } = useShop();
+  console.log(Total);
   return (
     <div className="lg:w-1/3">
       <div className="border rounded-lg p-4">
@@ -21,12 +24,16 @@ function Payment() {
             <span className="text-lg text-gray-600 font-semibold">
               SubTotal
             </span>
-            <span className="text-lg text-gray-600 font-semibold">$358484</span>
+            <span className="text-lg text-gray-600 font-semibold">
+              ${Total}
+            </span>
           </div>
 
           <div className="flex justify-between items-center mb-4">
             <span className="text-lg text-gray-600 font-semibold">Total</span>
-            <span className="text-lg text-pink-600 font-semibold">$358484</span>
+            <span className="text-lg text-pink-600 font-semibold">
+              ${Total}
+            </span>
           </div>
         </div>
         <div className="mt-6">

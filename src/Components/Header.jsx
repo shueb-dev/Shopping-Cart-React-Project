@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useShop from "../ShopContext";
 
 function Header() {
+  const { products } = useShop();
   return (
     <div className="fixed top-0 left-0 right-0 bg-white bg-opacity-60 shadow backdrop-blur-md z-10 ">
       <div className="max-w-4xl flex justify-between items-center m-auto p-3">
@@ -52,7 +54,7 @@ function Header() {
               />
             </svg>
             <span className="absolute -top-1 -right-1 bg-blue-400 w-5 h-5 rounded-full flex justify-center items-center text-white text-sm">
-              0
+              {products.length}
             </span>
           </Link>
         </ul>
