@@ -16,7 +16,7 @@ function CartItem() {
             : "Your cart is empty now please go and buy some items"}
         </h2>
         {products.map((product) => (
-          <div className="flex items-start space-x-4 mb-6">
+          <div className="flex items-start space-x-4 mb-6" key={product.key}>
             <img
               className="w-24 h-24 object-cover"
               src={product.thumbnail}

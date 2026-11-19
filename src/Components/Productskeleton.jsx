@@ -6,7 +6,7 @@ function Productskeleton() {
       {Array(20)
         .fill()
         .map((_, index) => (
-          <div className="rounded-lg overflow-hidden p-4 ">
+          <div className="rounded-lg overflow-hidden p-4 " key={index}>
             {/* {'image placeholder'} */}
             <div className="w-full h-48 mt-2 bg-linear-to-r from-gray-200 to-gray-300 animate-pulse"></div>
             {/* {title placeholder} */}

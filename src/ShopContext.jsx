@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { initialState } from "./ShopReducer";
 import ShopReducer from "./ShopReducer";
 
@@ -6,6 +6,11 @@ export const ShopContext = createContext(initialState);
 
 export const ShopProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ShopReducer, initialState);
+
+  useEffect(() => {
+    (localStorage.setItem("cart_item"),
+      JSON.stringify({ Total: state.Total, products: state.products }));
+  }, [state]);
 
   const calculateTotalPrice = (products) => {
     let Total = 0;

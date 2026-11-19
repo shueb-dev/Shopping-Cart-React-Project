@@ -1,4 +1,4 @@
-export const initialState = {
+export const initialState = JSON.parse(localStorage.setItem("cart_item")) || {
   products: [],
   Total: 0,
 };
