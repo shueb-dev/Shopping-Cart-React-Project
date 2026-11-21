@@ -8,8 +8,10 @@ export const ShopProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ShopReducer, initialState);
 
   useEffect(() => {
-    (localStorage.setItem("cart_item"),
-      JSON.stringify({ Total: state.Total, products: state.products }));
+    localStorage.setItem(
+      "cart_items",
+      JSON.stringify({ Total: state.Total, products: state.products }),
+    );
   }, [state]);
 
   const calculateTotalPrice = (products) => {

@@ -3,7 +3,7 @@ import useShop from "../ShopContext";
 
 function Payment() {
   const { Total } = useShop();
-  console.log(Total);
+  // console.log(Total);
   return (
     <div className="lg:w-1/3">
       <div className="border rounded-lg p-4">
