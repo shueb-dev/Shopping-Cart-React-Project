@@ -3,10 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import ProductItem from "./ProductItem";
 import axios from "axios";
 import Productskeleton from "./Productskeleton";
+
 export const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [Loading, SetLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState();
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+  const [originalProducts, setOriginalProducts] = useState([]);
 
   const searchRef = useRef(null);
 
@@ -19,6 +22,7 @@ export const ProductList = () => {
         );
 
         setProducts(data.products);
+        setOriginalProducts(data.products);
         SetLoading(false);
       } catch (e) {
         SetLoading(false);
@@ -27,6 +31,42 @@ export const ProductList = () => {
     fetchProducts();
   }, []);
 
+  // useEffect(() => {
+  //   const timerId = setTimeout(() => {
+  //     setDebouncedSearchTerm(searchTerm);
+  //   }, 300);
+  //   return () => {
+  //     clearTimeout(timerId);
+  //   };
+  // }, [searchTerm]);
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      const fetchProducts = async () => {
+        try {
+          SetLoading(true);
+          const { data } = await axios.get(
+            `https://dummyjson.com/products/search?q=${searchTerm}`,
+          );
+
+          setProducts(data.products);
+          SetLoading(false);
+        } catch (e) {
+          SetLoading(false);
+        }
+      };
+      fetchProducts();
+    } else {
+      setProducts(setOriginalProducts);
+    }
+  }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    if (searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, [products]);
+
   if (Loading) return <Productskeleton />;
   return (
     <>
@@ -34,7 +74,7 @@ export const ProductList = () => {
         <input
           ref={searchRef}
           type="text"
-          placeholder="search your products"
+          placeholder="search your products.."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="p-2 pl-10 rounded border shadow w-full focus:outline-none focus:border-pink-300"
