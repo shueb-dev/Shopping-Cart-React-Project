@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import ProductItem from "./ProductItem";
 import axios from "axios";
 import Productskeleton from "./Productskeleton";
+import { AiOutlineSearch } from "react-icons/ai";
 
 export const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -31,14 +32,14 @@ export const ProductList = () => {
     fetchProducts();
   }, []);
 
-  // useEffect(() => {
-  //   const timerId = setTimeout(() => {
-  //     setDebouncedSearchTerm(searchTerm);
-  //   }, 300);
-  //   return () => {
-  //     clearTimeout(timerId);
-  //   };
-  // }, [searchTerm]);
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300);
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchTerm]);
 
   useEffect(() => {
     if (debouncedSearchTerm) {
@@ -57,7 +58,7 @@ export const ProductList = () => {
       };
       fetchProducts();
     } else {
-      setProducts(setOriginalProducts);
+      setProducts(originalProducts);
     }
   }, [debouncedSearchTerm]);
 
@@ -79,6 +80,9 @@ export const ProductList = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="p-2 pl-10 rounded border shadow w-full focus:outline-none focus:border-pink-300"
         />
+        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 mt-6">
+          <AiOutlineSearch className="w-6 h-6 text-pink-600" />
+        </span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
         {products.length > 0 &&
